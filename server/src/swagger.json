@@ -1,0 +1,196 @@
+{
+      "swagger": "2.0",
+      "info": {
+            "title": "Be The Hero - Documentation",
+            "description": "This is a sample server for standard APIs of the application!",
+            "contact": {
+                  "name": "Leonardo Ronne - Product Manager at Visor Brasil",
+                  "email": "leoronne@gmail.com"
+            },
+            "version": "1.0.0",
+            "servers": [
+                  {
+                        "url": "http://localhost:8080",
+                        "description": "Local Host"
+                  },
+                  {
+                        "url": "https://bethehero.herokuapp.com",
+                        "description": "Production"
+                  }
+            ]
+      },
+      "host": [
+            {
+                  "name": "local",
+                  "url": "localhost:8080"
+            }
+      ],
+      "basePath": "/",
+      "tags": [
+            {
+                  "name": "NGO"
+            },
+            {
+                  "name": "Incidents"
+            }
+      ],
+      "schemes": [
+            "http",
+            "https"
+      ],
+      "paths": {
+            "/incidents/create": {
+                  "post": {
+                        "tags": [
+                              "Incidents"
+                        ],
+                        "summary": "Create an incident",
+                        "operationId": "createIncident",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "in": "body",
+                                    "name": "incident",
+                                    "description": "Send a incident created by a NGO",
+                                    "required": true,
+                                    "schema": {
+                                          "$ref": "#/definitions/IncidentsRequestDto"
+                                    }
+                              },
+                              {
+                                    "name": "Authorization",
+                                    "in": "header",
+                                    "description": "NGO's ID",
+                                    "required": true,
+                                    "type": "string"
+                              }
+                        ],
+                        "responses": {
+                              "200": {
+                                    "description": "Incident created",
+                                    "schema": {
+                                          "$ref": "#/definitions/IncidentResponseDto"
+                                    }
+                              },
+                              "401": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/incidents/index": {
+                  "get": {
+                        "tags": [
+                              "Incidents"
+                        ],
+                        "summary": "Searcn an incident",
+                        "operationId": "searchIncident",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "name": "ngoID",
+                                    "in": "query",
+                                    "description": "NGO's ID (you can search more than one, just use a ',' to separate then)",
+                                    "type": "string"
+                              },
+                              {
+                                    "name": "page",
+                                    "in": "query",
+                                    "description": "Result's page (delimited by 5)",
+                                    "type": "number",
+                                    "format": "integer"
+                              }
+                        ],
+                        "responses": {
+                              "200": {
+                                    "description": "Incident created",
+                                    "schema": {
+                                          "$ref": "#/definitions/IncidentResponseDto"
+                                    }
+                              },
+                              "401": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            }
+      },
+      "definitions": {
+            "IncidentsRequestDto": {
+                  "type": "object",
+                  "required": [
+                        "TITLE",
+                        "DESCRIPTION",
+                        "VALUE"
+                  ],
+                  "properties": {
+                        "TITLE": {
+                              "type": "string",
+                              "example": "Equipment repair",
+                              "description": "Incident's Title"
+                        },
+                        "DESCRIPTION": {
+                              "type": "string",
+                              "example": "A flood destroyed all of our equipment",
+                              "description": "Incident's description"
+                        },
+                        "VALUE": {
+                              "type": "number",
+                              "format": "double",
+                              "example": 2035.45,
+                              "description": "Valor do título"
+                        }
+                  },
+                  "description": "Incidentes created by NGOs"
+            },
+            "IncidentResponseDto": {
+                  "type": "object",
+                  "properties": {
+                        "incidentsID": {
+                              "type": "number",
+                              "format": "integer",
+                              "example": 5,
+                              "description": "Incident's table ID"
+                        }
+                  }
+            },
+            "ErrorResponseDto": {
+                  "type": "object",
+                  "properties": {
+                        "error": {
+                              "type": "string",
+                              "example": "Error message",
+                              "description": "Error description"
+                        }
+                  }
+            }
+      }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "BeTheHero-Backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Leonardo Ronne",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.13",
+    "node": "^13.2.0",
+    "nodemailer": "^6.4.5",
+    "nodemailer-express-handlebars": "^3.1.0",
+    "nodemon": "^2.0.2",
+    "path": "^0.12.7",
+    "sqlite3": "^4.1.1",
+    "swagger-jsdoc": "^3.5.0",
+    "swagger-ui-dist": "^3.25.0",
+    "swagger-ui-express": "^4.1.3"
+  }
+}
