@@ -1,4 +1,5 @@
 <p align="center">
+  <img src="client/src/assets/img/logo.png" width="300px"/>
 </p>
 
 # Be The Hero :gift_heart:
