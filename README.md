@@ -1,52 +1,42 @@
-<h4 align="center">
-  🚀 Semana OmniStack 11.0
-</h4>
-
 <p align="center">
-  <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-como-contribuir">Como contribuir</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-licença">Licença</a>
+    <strong>Be The Hero</strong>
 </p>
 
 <br>
 
 <p align="center">
-    <strong>Be The Hero</strong>
+  <a href="#rocket-Techs">Techs</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-Project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-Contributing">Contributing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-License">License</a>
 </p>
 
-## :rocket: Tecnologias
+## :rocket: Techs
 
-Esse projeto foi desenvolvido com as seguintes tecnologias:
-
-- [Node.js](https://nodejs.org/en/)
-- [React](https://reactjs.org)
-- [React Native](https://facebook.github.io/react-native/)
-- [Expo](https://expo.io/)
+- [Node.js](https://nodejs.org/en/);
+- [React](https://reactjs.org);
+- [React Native](https://facebook.github.io/react-native/).
 
 Extras:
 
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 
-## 💻 Projeto
+## 💻 Project
 
 O **Be The Hero** é um projeto que visa conectar pessoas interessadas em ajudar ongs e ongs com campanhas abertas.
 
-## 🤔 Como contribuir
+## 🤔 Contributing
 
-- Faça um fork desse repositório;
-- Cria uma branch com a sua feature: `git checkout -b minha-feature`;
-- Faça commit das suas alterações: `git commit -m 'feat: Minha nova feature'`;
-- Faça push para a sua branch: `git push origin minha-feature`.
+Please read [CONTRIBUTING](https://github.com/leoronne/BeTheHero/blob/master/CONTRIBUTING.md) for details on code of conduct, and the process for submitting pull requests to the project.
 
-Depois que o merge da sua pull request for feito, você pode deletar a sua branch.
+## :memo: License
 
-## :memo: Licença
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+- **[MIT license](https://github.com/leoronne/BeTheHero/blob/master/LICENCE)**
+- Copyright 2020 © <a href="https://github.com/leoronne" target="_blank">Leonardo Ronne</a>.
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+## 
 
----
 
-Feito com ❤️ by **Rocketseat/mpgxc**
