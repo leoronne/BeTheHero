@@ -1,5 +1,4 @@
 <p align="center">
-  <img src="src/assets/img/logoTong.png" width="300px"/>
 </p>
 
 # Be The Hero :gift_heart:
@@ -14,10 +13,13 @@
   <a href="#memo-License">License</a>
 </p>
 
+<br>
 
 ## Project 💻
 
 **Be The Hero** connects people who waht to help NGOs, it was a project made on [Rocketseat](https://github.com/Rocketseat)'s #11 OmniStack Week.
+
+<br>
 
 ## Techs :rocket:
 
@@ -30,11 +32,15 @@ Extras:
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 
-## 🤔 Contributing
+<br>
+
+## Contributing 🤔 
 
 Please read [CONTRIBUTING](https://github.com/leoronne/BeTheHero/blob/master/CONTRIBUTING.md) for details on code of conduct, and the process for submitting pull requests to the project.
 
-## :memo: License
+<br>
+
+## License :memo:
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 - **[MIT license](https://github.com/leoronne/BeTheHero/blob/master/LICENSE)**
