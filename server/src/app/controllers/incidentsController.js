@@ -70,6 +70,7 @@ module.exports = {
 
       if (!ID) {
         await incidentsRepository.deleteAll(ngoID);
+        return res.status(204).send();
       }
 
       var incidentsID = ID.split(',');

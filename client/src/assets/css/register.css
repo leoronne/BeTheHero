@@ -40,7 +40,7 @@
 
 .register-container .content form {
       width: 100%;
-      max-width: 460px;
+      max-width: 480px;
 }
 
 /* .register-container .content form input {
@@ -55,4 +55,35 @@
 .register-container .content form .input-group {
       width: 100%;
       display: flex;
+}
+
+@media (max-width: 1100px) {
+      .register-container {
+            width: 100%;
+            height: 130vh;
+      }
+
+      .register-container .content{
+            margin-top: 140px;
+            width: 95%;
+            display: block;
+            flex-wrap: wrap !important;  
+      }
+
+      .register-container .content section {
+            max-width: 100%;
+            align-items: center;
+            justify-content: center;
+      }
+
+      .register-container .content img {
+            width: 80%;
+      }
+      
+      .register-container .content form {
+            max-width: 100%;
+            margin-top: 50px;
+            align-items: center;
+            justify-content: center;
+      }
 }

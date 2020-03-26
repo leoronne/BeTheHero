@@ -25,9 +25,9 @@ module.exports = {
         const [ngo] = await connection('NGO').select('*').where({
             EMAIL
         })
-        .orWhere({
-            WHATSAPP
-        });
+            .orWhere({
+                WHATSAPP
+            });
 
         return ngo;
     },
@@ -74,9 +74,11 @@ module.exports = {
         return ngo;
     },
     async deleteByID(ngoID) {
+        await connection('INCIDENTS').delete().whereIn('NGO_ID', ngoID.split(','));
         await connection('NGO').delete().whereIn('ID', ngoID.split(','));
     },
     async deleteAll() {
+        await connection('INCIDENTS').delete();
         await connection('NGO').delete();
     },
 
