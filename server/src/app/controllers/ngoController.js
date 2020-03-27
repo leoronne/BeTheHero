@@ -12,11 +12,15 @@ module.exports = {
     try {
       const ngo = !ngoID ? await ngoRepository.getAll() : await ngoRepository.getByID(ngoID);
 
-      // return res.json(ngo.length === 0 ? 'NGO not found!' : ngo);
+      if (ngo.length === 0)
+        return res.status(400).send({
+          message: 'NGO not found!'
+        });
+
       return res.json(ngo);
     } catch (err) {
       return res.status(500).send({
-        error: err.message
+        message: err.message
       });
     }
   },
@@ -30,14 +34,14 @@ module.exports = {
     try {
       if (!await ngoServices.validateEmailAddress(EMAIL))
         return res.status(401).send({
-          error: 'Invalid email!'
+          message: 'Invalid email!'
         });
       const ngo = await ngoRepository.getByCredentials(EMAIL, WHATSAPP);
 
       if (!ngo) {
         const ID = await ngoRepository.create(req.body);
         var link = `https://bethehero-25bcf.firebaseapp.com/TESTE?ngoid=${ID}`;
-        
+
         mailer.sendMail({
           to: `${EMAIL}`,
           bc: 'betheehero@gmail.com',
@@ -51,7 +55,7 @@ module.exports = {
         }, (err) => {
           if (err)
             return res.status(400).send({
-              error: err.message
+              message: err.message
             });
         });
 
@@ -59,12 +63,12 @@ module.exports = {
 
       } else {
         return res.status(401).send({
-          error: 'You are already registered on our platform!'
+          message: 'You are already registered on our platform!'
         });
       }
     } catch (err) {
       return res.status(500).send({
-        error: err.message
+        message: err.message
       });
     }
   },
@@ -76,13 +80,13 @@ module.exports = {
 
       if (!ngo) {
         return res.status(401).send({
-          error: 'NGO not found!'
+          message: 'NGO not found!'
         });
       }
 
       if (ngo.STATUS === 'Active') {
         return res.status(401).send({
-          error: 'NGO already active!'
+          message: 'NGO already active!'
         });
       }
 
@@ -91,7 +95,7 @@ module.exports = {
       return res.json(ngo);
     } catch (err) {
       return res.status(500).send({
-        error: err.message
+        message: err.message
       });
     }
   },
@@ -105,7 +109,7 @@ module.exports = {
       return res.status(204).send();
     } catch (err) {
       return res.status(500).send({
-        error: err.message
+        message: err.message
       });
     }
   },

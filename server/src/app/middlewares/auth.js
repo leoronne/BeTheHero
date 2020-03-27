@@ -8,12 +8,12 @@ module.exports = (req, res, next) => {
 
     if (!authHeader)
         return res.status(401).send({
-            error: 'No token provided'
+            message: 'No token provided'
         })
 
     jwt.verify(authHeader, process.env.AUTH, (err, decoded) => {
         if (err) return res.status(401).send({
-            error: 'Token invalid'
+            message: 'Token invalid'
         });
 
         req.userId = decoded.id;

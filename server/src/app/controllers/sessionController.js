@@ -16,19 +16,19 @@ module.exports = {
     try {
       if (!await ngoServices.validateEmailAddress(EMAIL))
         return res.status(401).send({
-          error: 'Invalid email!'
+          message: 'Invalid email!'
         });
 
       const ngo = await ngoRepository.getByCredentials(EMAIL, null);
 
       if (!ngo) {
         return res.status(401).send({
-          error: 'NGO not found!'
+          message: 'NGO not found!'
         });
       } else {
         if (!await bcrypt.compare(PASSWORD, ngo.PASSWORD))
           return res.status(401).send({
-            error: 'Invalid credentials!'
+            message: 'Invalid credentials!'
           });
 
         res.send(JSON.stringify(await ngoServices.generateToken({
@@ -38,7 +38,7 @@ module.exports = {
 
     } catch (err) {
       return res.status(400).send({
-        error: err.message
+        message: err.message
       });
     }
   },
@@ -50,7 +50,7 @@ module.exports = {
     try {
       if (await ngoServices.validateToken(token) === false) {
         return res.status(401).send({
-          error: 'Invalid token!'
+          message: 'Invalid token!'
         });
       };
 
@@ -58,7 +58,7 @@ module.exports = {
 
       if (!ngo)
         return res.status(401).send({
-          error: 'NGO not found!'
+          message: 'NGO not found!'
         });
         
       ngo.PASSWORD = undefined;
@@ -66,7 +66,7 @@ module.exports = {
       return res.status(200).json(ngo);
     } catch (err) {
       return res.status(400).send({
-        error: err.message
+        message: err.message
       });
     }
   },

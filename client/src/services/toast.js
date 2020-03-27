@@ -7,12 +7,12 @@ import { toast } from 'react-toastify';
 
 export default async function notify(msg, icon, type, position) {
       let content = (
-            <div style={{ display: 'flex'}}>
+            <div style={{ display: 'flex', verticalAlign: 'middle'}}>
                   {/* <Col> */}
-                        <p style={{fontSize: '20px', textAlign:'center'}}>{icon}</p>
+                        <p style={{fontSize: '20px', textAlign:'center', verticalAlign: 'middle'}}>{icon}</p>
                   {/* </Col> */}
                   {/* <Col> */}
-                        <p style={{margin: 'auto', fontSize: '14px', fontFamily: 'Roboto, sans-serif', marginLeft:'15px'}}>{msg}</p>
+                        <p style={{margin: 'auto', fontSize: '14px', fontFamily: 'Roboto, sans-serif', marginLeft:'15px', textAlign:'justify', marginRight:'3px'}}>{msg}</p>
                   {/* </Col> */}
             </div>);
 

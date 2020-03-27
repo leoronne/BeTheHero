@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const { errors } = require('celebrate');
 
 const copyright = require('./routes/copyright');
 const ngo = require('./routes/ngoRoutes');
@@ -36,6 +37,8 @@ app.use('/', copyright);
 app.use('/ngo', ngo);
 app.use('/session', session);
 app.use('/incidents', incidents);
+
+app.use(errors());
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

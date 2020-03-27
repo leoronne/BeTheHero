@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 module.exports = {
     async getByID(ngoID) {
         const ngo = await connection('NGO').select('*').whereIn('ID', ngoID.split(','));
-
+        
         return ngo;
     },
     async getAll() {

@@ -35,7 +35,7 @@ export default function Login() {
                               history.push('/profile');
                         })
                         .catch((err) => {
-                              notify(`${err.response === undefined ? err.message : err.response.data.error}`, '⚠️', 'error', 'top-right');
+                              notify(`${err.response === undefined ? err.message : err.response.data.message}`, '⚠️', 'error', 'top-right');
                         });
             };
             setLoading(false);

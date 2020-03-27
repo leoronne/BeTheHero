@@ -18,7 +18,7 @@ module.exports = {
 
       if (!ngo) {
         return res.status(401).send({
-          error: 'NGO not found!'
+          message: 'NGO not found!'
         });
       };
 
@@ -28,7 +28,7 @@ module.exports = {
       return res.json(incidents);
     } catch (err) {
       return res.status(500).send({
-        error: err.message
+        message: err.message
       });
     }
   },
@@ -41,7 +41,7 @@ module.exports = {
 
       if (!ngo) {
         return res.status(401).send({
-          error: 'NGO not found!'
+          message: 'NGO not found!'
         });
       };
 
@@ -50,7 +50,7 @@ module.exports = {
       return res.json({ incidentsID });
     } catch (err) {
       return res.status(500).send({
-        error: err.message
+        message: err.message
       });
     }
   },
@@ -64,7 +64,7 @@ module.exports = {
 
       if (!ngo) {
         return res.status(401).send({
-          error: 'NGO not found!'
+          message: 'NGO not found!'
         });
       };
 
@@ -86,7 +86,7 @@ module.exports = {
       return res.status(204).send();
     } catch (err) {
       return res.status(500).send({
-        error: err.message
+        message: err.message
       });
     }
   }

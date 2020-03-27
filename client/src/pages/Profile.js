@@ -32,7 +32,7 @@ export default function Profile() {
                         return true
                   })
                   .catch((err) => {
-                        notify(`${err.response === undefined ? err.message : err.response.data.error}`, '⚠️', 'error', 'top-right');
+                        notify(`${err.response === undefined ? err.message : err.response.data.message}`, '⚠️', 'error', 'top-right');
                         return false
                   });
       }, [ngoID]);
@@ -59,7 +59,7 @@ export default function Profile() {
                               return true
                         })
                         .catch((err) => {
-                              notify(`${err.response === undefined ? err.message : err.response.data.error}`, '⚠️', 'error', 'top-right');
+                              notify(`${err.response === undefined ? err.message : err.response.data.message}`, '⚠️', 'error', 'top-right');
                               return false
                         });
 
