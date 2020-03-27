@@ -1,0 +1,13 @@
+{
+  "name": "BeTheHero",
+  "version": "1.0.0",
+  "author": "Leonardo Ronne",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server/src/index.js",
+    "startapp": "npm install --prefix server && npm install --prefix client",
+    "postinstall": "npm install --prefix server && npm install --prefix client",
+    "dev": "nodemon src/index.js",
+    "startserver": "nodemon server/src/index.js"
+  }
+}
