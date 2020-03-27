@@ -7,12 +7,12 @@
 <br>
 
 <p align="center">
-  <a href="#-Project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-Techs">Techs</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-Installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-Test">Test</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-Contributing">Contributing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-License">License</a>
+  <a href="#project-">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#techs-rocket">Techs</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#installation-wrench">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#test-heavy_check_mark">Test</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#contributing-">Contributing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#license-memo">License</a>
 </p>
 
 <br>
@@ -49,11 +49,17 @@ To start the application server on your local machine, from the root folder, jus
 yarn start
 ```
 
+<br>
+
+
 To start the application client (frontend), from the root folder, just run:
 
 ```sh
 yarn startclient
 ```
+
+<br>
+
 
 <strong>Remember to change the api's [baseURL](https://github.com/leoronne/BeTheHero/blob/master/client/src/services/api.js) to your local server adress (which is set to http://localhost:8080/ at [index.js](https://github.com/leoronne/BeTheHero/blob/master/server/src/index.js)), or to your production server.</strong>
 
