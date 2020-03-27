@@ -7,11 +7,12 @@
 <br>
 
 <p align="center">
-  <a href="#rocket-Techs">Techs</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-Project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-Techs">Techs</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-Installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-Test">Test</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-Contributing">Contributing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-License">License</a>
+  <a href="#-License">License</a>
 </p>
 
 <br>
@@ -25,13 +26,36 @@
 ## Techs :rocket:
 
 - [Node.js](https://nodejs.org/en/);
-- [React](https://reactjs.org);
+- [ReactJS](https://reactjs.org);
 - [React Native](https://facebook.github.io/react-native/).
 
-Extras:
+<br>
 
-- [ESLint](https://eslint.org/)
-- [Prettier](https://prettier.io/)
+## Installation :wrench:
+
+You can install the application server and client using, from the root folder, the following command:
+
+```sh
+yarn installapp
+```
+
+<br>
+
+## Test :heavy_check_mark:
+
+To start the application server on your local machine, from the root folder, just run:
+
+```sh
+yarn start
+```
+
+To start the application client (frontend), from the root folder, just run:
+
+```sh
+yarn startclient
+```
+
+<strong>Remember to change the api's [baseURL](https://github.com/leoronne/BeTheHero/blob/master/client/src/services/api.js) to your local server adress (which is set to http://localhost:8080/ at [index.js](https://github.com/leoronne/BeTheHero/blob/master/server/src/index.js)), or to your production server.</strong>
 
 <br>
 
