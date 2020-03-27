@@ -28,15 +28,17 @@ export default function Incidents() {
                   return;
             }
             setLoading(true);
-            const response = await api.get('incidents', {
+            const response = await api.get('incidents/index', {
                   params: { page }
             });
+
+            console.log(response.data)
 
             setIncidents([...incidents, ...response.data]);
             setTotal(response.headers['x-total-count']);
 
             setLoading(false);
-            setPage(page + 1)
+            setPage(page + 1);
       };
 
       useEffect(() => {
@@ -54,35 +56,35 @@ export default function Incidents() {
 
                   <Text style={styles.title}>Welcome!</Text>
                   <Text style={styles.description}>Choose one of the NGO's incidents below and be the <Text style={styles.headerTextBold}>hero</Text> they need you to be!</Text>
-
+                 
                   <FlatList
                         data={incidents}
                         style={incidents.incidents}
-                        KeyExtractor={incident => String(incidents.id)}
+                        keyExtractor={incident => String(incident.id)}
                         showsVerticalScrollIndicator={false}
                         onEndReached={loadIncidents}
                         onEndReachedThreshold={0.2}
                         renderItem={({ item: incident }) => (
                               <View style={styles.incident}>
-                                    <Text style={styles.incidentProperty}>ONG:</Text>
-                                    <Text style={styles.incidentValue}>{incident.name}</Text>
+                                    <Text style={styles.incidentProperty}>NGO:</Text>
+                                    <Text style={styles.incidentValue}>{incident.NAME}</Text>
 
-                                    <Text style={styles.incidentProperty}>CASO:</Text>
-                                    <Text style={styles.incidentValue}>{incident.title}</Text>
+                                    <Text style={styles.incidentProperty}>INCIDENT:</Text>
+                                    <Text style={styles.incidentValue}>{incident.TITLE}</Text>
 
-                                    <Text style={styles.incidentProperty}>VALOR:</Text>
+                                    <Text style={styles.incidentProperty}>VALUE:</Text>
                                     <Text style={styles.incidentValue}>{
                                           Intl.NumberFormat(
-                                                'pt-BR', {
+                                                'en-US', {
                                                 style: 'currency',
-                                                currency: 'BRL'
-                                          }).format(incident.value)}
+                                                currency: 'USD'
+                                          }).format(incident.VALUE)}
                                     </Text>
                                     <TouchableOpacity
                                           style={styles.detailsButton}
                                           onPress={() => navigationToDetail(incident)}
                                     >
-                                          <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
+                                          <Text style={styles.detailsButtonText}>See more</Text>
                                           <Feather name="arrow-right" size={16} color="#E02041" />
                                     </TouchableOpacity>
                               </View>

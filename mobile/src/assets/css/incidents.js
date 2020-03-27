@@ -32,7 +32,8 @@ export default StyleSheet.create({
             textAlign:'justify',
 		fontSize: 16,
 		lineHeight: 24,
-		color: '#737380'
+            color: '#737380',
+            marginBottom: 15,
 	},
 	incidentList: {
 		marginTop: 32,
