@@ -19,7 +19,7 @@
 
 ## Project 💻
 
-**Be The Hero** connects people who waht to help NGOs, it was a project made on [Rocketseat](https://github.com/Rocketseat)'s #11 OmniStack Week.
+**Be The Hero** connects people who want to help NGOs, it was a project made on [Rocketseat](https://github.com/Rocketseat)'s #11 OmniStack Week.
 
 <br>
 

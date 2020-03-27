@@ -1,5 +1,5 @@
-exports.up = function(knex) {
-  return knex.schema.createTable('NGO', function(table) {
+exports.up = function (knex) {
+  return knex.schema.createTable('NGO', function (table) {
     table.string('ID').primary();
     table.string('EMAIL').notNullable().unique();
     table.string('WHATSAPP').notNullable().unique();
@@ -7,10 +7,13 @@ exports.up = function(knex) {
     table.string('NAME').notNullable();
     table.string('CITY').notNullable();
     table.string('UF', 2).notNullable();
-    table.string ('STATUS').defaultTo('Inactive');
+    table.string('STATUS').defaultTo('Inactive');
+    table.string('PASSTOKEN');
+    table.datetime('PASSRESET');
+    table.timestamps(true, true);
   });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   knex.schema.dropTable('NGO');
 };

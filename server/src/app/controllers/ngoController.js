@@ -24,18 +24,36 @@ module.exports = {
   async create(req, res) {
     const {
       EMAIL,
-      WHATSAPP
+      WHATSAPP,
+      NAME
     } = req.body;
     try {
       if (!await ngoServices.validateEmailAddress(EMAIL))
         return res.status(401).send({
           error: 'Invalid email!'
         });
-
       const ngo = await ngoRepository.getByCredentials(EMAIL, WHATSAPP);
 
       if (!ngo) {
         const ID = await ngoRepository.create(req.body);
+        var link = `https://bethehero-25bcf.firebaseapp.com/TESTE?ngoid=${ID}`;
+        
+        mailer.sendMail({
+          to: `${EMAIL}`,
+          bc: 'betheehero@gmail.com',
+          from: '"Léo, of Be The Hero" <betheehero@no-reply.com>',
+          subject: `Hi ${NAME}, please confirm your email!`,
+          template: 'auth/verifyemail',
+          context: {
+            NAME,
+            link
+          },
+        }, (err) => {
+          if (err)
+            return res.status(400).send({
+              error: err.message
+            });
+        });
 
         return res.json({ ID });
 

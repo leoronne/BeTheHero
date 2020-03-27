@@ -7,7 +7,7 @@ const usr = process.env.MAIL_USER;
 const pass = process.env.MAIL_PASS;
 
 const transport = nodemailer.createTransport({
-  service: 'Gmail',
+  service: 'SendGrid',
     auth: { user: usr, 
     pass: pass },
 });

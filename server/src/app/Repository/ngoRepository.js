@@ -11,13 +11,7 @@ module.exports = {
     },
     async getAll() {
         const ngo = await connection('NGO').select(
-            'ID',
-            'EMAIL',
-            'WHATSAPP',
-            'NAME',
-            'CITY',
-            'UF',
-            'STATUS');
+            '*');
 
         return ngo;
     },

@@ -2,6 +2,8 @@ require('dotenv/config');
 const knex = require('knex');
 const configaration = require('../../knexfile');
 
-const connection = process.env.DBAMBIENT === 'development' ? knex(configaration.development):knex(configaration.production);
+const dbconfig = process.env.DBAMBIENT === 'development' ? (configaration.development) : (configaration.production);
+
+const connection = knex(dbconfig);
 // npx knex migrate:latest
 module.exports = connection;
