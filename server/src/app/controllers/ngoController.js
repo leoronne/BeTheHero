@@ -40,7 +40,7 @@ module.exports = {
 
       if (!ngo) {
         const ID = await ngoRepository.create(req.body);
-        var link = `https://bethehero-25bcf.firebaseapp.com/TESTE?ngoid=${ID}`;
+        var link = `https://bethehero-25bcf.firebaseapp.com/confirm?ngoid=${ID}`;
 
         mailer.sendMail({
           to: `${EMAIL}`,

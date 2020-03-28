@@ -75,10 +75,10 @@ export default function Profile() {
                   <header>
                         <img src={logo} alt='Be The Hero' />
                         <span>
-                              Welcome, {ngoName}
+                              Welcome, <strong>{ngoName}</strong>
                         </span>
 
-                        <Link className='linkButton' to='/incidents/new' >Create new incident</Link>
+                        <Link className='linkButton' to='/profile/newincident' >Create new incident</Link>
 
                         <button type='button' onClick={handleLogout}>
                               <FiPower size={18} color='#E02041' />

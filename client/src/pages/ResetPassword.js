@@ -10,12 +10,11 @@ import isAuthenticated from '../services/auth';
 import api from '../services/api';
 import notify from '../services/toast';
 
-import '../assets/css/login.css';
+import '../assets/css/confirm.css';
 
-import heroesImg from '../assets/img/heroes.png';
 import logo from '../assets/img/logo.png';
 
-export default function Login() {
+export default function ResetPassword() {
       const [loading, setLoading] = useState(false);
       const [email, setEmail] = useState('');
       const [password, setPassword] = useState('');
@@ -33,13 +32,8 @@ export default function Login() {
                   await api.post('session/login', data)
                         .then((response) => {
                               localStorage.setItem('token', response.data)
-                              setTimeout(
-                                    function () {
-                                          history.push('/profile');
-                                    },
-                                    50
-                              );
                               isAuthenticated();
+                              history.push('/profile');
                         })
                         .catch((err) => {
                               notify(`${err.response === undefined ? err.message : err.response.data.message}`, '⚠️', 'error', 'top-right');
@@ -66,7 +60,7 @@ export default function Login() {
       };
 
       return (
-            <div className='logon-container'>
+            <div className='confirm-container'>
                   <section className='form'>
                         <div className='logo'>
                               <img src={logo} alt='Be The Hero' />
@@ -93,12 +87,8 @@ export default function Login() {
                                           size={20}
                                           color={'#fff'} /> : 'Login'}
                               </Button>
-                              <Link className='back-link' to='/register'>
-                                    <FiLogIn size={16} color='#E02041' />Register
-                              </Link>
                         </form>
                   </section>
-                  <img src={heroesImg} className='heroes' alt='Heroes' />
             </div>
       )
 };

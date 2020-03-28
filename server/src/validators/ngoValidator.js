@@ -12,8 +12,8 @@ module.exports = {
             })
       },
       confirm: {
-            [Segments.QUERY]: {
-                  token: Joi.string().required().error(new Error('Token field is required!')),
+            [Segments.BODY]: {
+                  ID: Joi.string().required().token().min(4).error(new Error('Invalid ID!')),
             }
       },
 }

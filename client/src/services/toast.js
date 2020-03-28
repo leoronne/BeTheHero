@@ -1,8 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import { Row, Col } from 'reactstrap';
-
 import { toast } from 'react-toastify';
 
 export default async function notify(msg, icon, type, position) {

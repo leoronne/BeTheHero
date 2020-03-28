@@ -12,4 +12,9 @@ module.exports = {
                   token: Joi.string().required().error(new Error('Token field is required!')),
             }
       },
+      sendEmail: {
+            [Segments.BODY]: Joi.object().keys({
+                  EMAIL: Joi.string().required().email().error(new Error('Invalid email!')),                  
+            })
+      },
 }

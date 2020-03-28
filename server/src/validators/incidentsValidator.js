@@ -22,6 +22,7 @@ module.exports = {
       index: {
             [Segments.QUERY]: {
                   page: Joi.number().error(new Error('Invalid page!')),
+                  ngoID: Joi.string().required().token().min(4).error(new Error('Invalid ngoID!')),
             }
       },
 }
