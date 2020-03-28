@@ -4,15 +4,19 @@
 
 # 
 
+<p align="center">
+  <img src="/assets/img/banneBTH.png"/>
+</p>
+
 <br>
 
 <p align="center">
   <a href="#project-">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#techs-rocket">Techs</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#techs-rocket">Extras</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#extras-slot_machine">Extras</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#installation-wrench">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#test-heavy_check_mark">Test</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#test-heavy_check_mark">To Do</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#to-do-newspaper">To Do</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#contributing-">Contributing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#license-memo">License</a>
 </p>
@@ -89,9 +93,10 @@ yarn startclient
 
 ## To do :newspaper:
 
+- Profile page for NGO insert and detail more about them;
+- Create more contact options;
 - Filters so that NGO and heroes can search through incidents more efficiently;
 - Mark the incidents that have been already solved;
-- Create more contact options;
 - Interface for the NGOs on the mobile version, in the moment the mobile app only lists all the incidents created and allows you to contact the NGO responsible.
 
 <br>
