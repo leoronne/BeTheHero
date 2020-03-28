@@ -9,7 +9,7 @@ exports.up = function (knex) {
     table.string('UF', 2).notNullable();
     table.string('STATUS').defaultTo('Inactive');
     table.string('PASSTOKEN');
-    table.datetime('PASSRESET');
+    table.timestamp('PASSRESET');
     table.timestamps(true, true);
   });
 };

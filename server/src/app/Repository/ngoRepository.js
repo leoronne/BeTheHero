@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 module.exports = {
     async getByID(ngoID) {
         const ngo = await connection('NGO').select('*').whereIn('ID', ngoID.split(','));
-        
+
         return ngo;
     },
     async getAll() {
@@ -75,6 +75,20 @@ module.exports = {
         await connection('INCIDENTS').delete();
         await connection('NGO').delete();
     },
+    async setPasswordReset(ngoID, token, date) {
+        await connection('NGO').where('ID', ngoID).update({
+            'PASSTOKEN': token,
+            'PASSRESET': date
+        });
+    },
+    async updatePassword(ngoID, password) {
+        const cryptPass = await bcrypt.hash(password, 10);
 
+        await connection('NGO').where('ID', ngoID).update({
+            'PASSWORD': cryptPass,
+            'PASSTOKEN': null,
+            'PASSRESET': null
+        });
+    },
 };
 

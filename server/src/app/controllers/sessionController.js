@@ -98,6 +98,11 @@ module.exports = {
           message: 'NGO not found!'
         });
 
+      if (ngo.STATUS === 'Active') {
+        return res.status(401).send({
+          message: 'NGO already active!'
+        });
+      }
 
       const ID = ngo.ID;
       var link = `https://bethehero-25bcf.firebaseapp.com/confirm?ngoid=${ID}`;

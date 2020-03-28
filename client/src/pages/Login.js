@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiLogIn } from 'react-icons/fi';
+import { FiLogIn, FiKey } from 'react-icons/fi';
 import { DotLoader } from 'react-spinners';
 import {
       Button
@@ -93,9 +93,15 @@ export default function Login() {
                                           size={20}
                                           color={'#fff'} /> : 'Login'}
                               </Button>
-                              <Link className='back-link' to='/register'>
-                                    <FiLogIn size={16} color='#E02041' />Register
-                              </Link>
+                              <div className='links'>
+                                    <Link className='back-link' to='/register'>
+                                          <FiLogIn size={16} color='#E02041' />Register
+                                    </Link>
+
+                                    <Link className='back-link' to='/forgotpassword' style={{fontSize:'12px'}}>
+                                          <FiKey size={13} color='#E02041' />Forgot your password?
+                                    </Link>
+                              </div>
                         </form>
                   </section>
                   <img src={heroesImg} className='heroes' alt='Heroes' />

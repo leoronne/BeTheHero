@@ -142,17 +142,17 @@ export default function Register() {
                                     <p>
                                           WhatsApp:
                               </p>
-    <PhoneInput
-      placeholder="Enter phone number"
-      value={whatsapp}
-      onChange={setWhatsapp}
-      labels={labels}
-      metadata={metadata}
-      error={whatsapp ? (isValidPhoneNumber(whatsapp) ? undefined : 'Invalid phone number') : 'Phone number required'}
-      />
-                                   
-                                   
-                                   
+                                    <PhoneInput
+                                          placeholder="Enter phone number"
+                                          value={whatsapp}
+                                          onChange={setWhatsapp}
+                                          labels={labels}
+                                          metadata={metadata}
+                                          error={whatsapp ? (isValidPhoneNumber(whatsapp) ? undefined : 'Invalid phone number') : 'Phone number required'}
+                                    />
+
+
+
                                     {/* <input type='tel' placeholder='WhatsApp' maxLength='14' value={whatsapp}
                                           onChange={e => maskPhone(e.target.value)} /> */}
 

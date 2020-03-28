@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
 import queryString from 'query-string';
 import { DotLoader } from 'react-spinners';
 import {
@@ -27,7 +28,7 @@ export default function Confirm(props) {
       const params = useQuery();
 
       useEffect(() => {
-            if (params.getAll('ngoid')[0] === '') {
+            if (params.getAll('ngoid')[0] === '' || params.getAll('ngoid')[0] === undefined) {
                   notify(`Error while identifying NGO's ID!`, '⚠️', 'error', 'top-right');
                   history.push('/');
             }
@@ -40,7 +41,7 @@ export default function Confirm(props) {
                               function () {
                                     history.push('/')
                               },
-                              1600
+                              600
                         );
                         return true
                   })
@@ -112,6 +113,9 @@ export default function Confirm(props) {
                                           size={20}
                                           color={'#fff'} /> : 'Send new email verification!'}
                               </Button>
+                              <Link className='back-link' to='/'>
+                                    <FiArrowLeft size={16} color='#E02041' />Return to Homepage
+                              </Link>
                         </form>
                   </section>
             </div>

@@ -17,6 +17,7 @@
     "react-dom": "^16.13.1",
     "react-icons": "^3.9.0",
     "react-phone-number-input": "^3.0.22",
+    "react-recaptcha-google": "^1.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-spinners": "^0.8.1",

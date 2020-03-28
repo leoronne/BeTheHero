@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Switch, Redirect, Router } from 'react-router-dom
 
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword.jsx';
+import UpdatePassword from './pages/UpdatePassword';
 import Confirm from './pages/Confirm';
 import Profile from './pages/Profile';
 import NewIncident from './pages/NewIncident';
@@ -17,22 +19,42 @@ const hist = createBrowserHistory();
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
       return (
-        <Route
-          {...rest}
-          render={props =>
-            isAuthenticated() ? (
-              <Component {...props} />
-            ) : (
-                <Redirect from="/profile"
-                  to={{
-                    pathname: '/',
-                    state: { message: 'Usuário não autorizado' }
-                  }}
-                />
-              )}
-        />
+            <Route
+                  {...rest}
+                  render={props =>
+                        isAuthenticated() ? (
+                              <Component {...props} />
+                        ) : (
+                                    <Redirect from="/profile"
+                                          to={{
+                                                pathname: '/',
+                                                state: { message: 'Usuário não autorizado' }
+                                          }}
+                                    />
+                              )}
+            />
       );
-    };
+};
+
+
+const PublicRoute = ({ component: Component, ...rest }) => {
+      return (
+            <Route
+                  {...rest}
+                  render={props =>
+                        !isAuthenticated() ? (
+                              <Component {...props} />
+                        ) : (
+                                    <Redirect from="/session"
+                                          to={{
+                                                pathname: '/profile',
+                                                state: { message: 'Usuário logado' }
+                                          }}
+                                    />
+                              )}
+            />
+      );
+};
 
 export default function Routes() {
 
@@ -71,17 +93,14 @@ export default function Routes() {
             <BrowserRouter basename={window.location.pathname || ''} >
                   <Router history={hist} basename={window.location.pathname || ''}>
                         <Switch>
-                              
-                        <PrivateRoute path="/profile" component={Profile} />
-                              <Route exact path='/' render={() => (
-                                                <Login />
-                              )} />
-                              <Route exact path='/register' render={() => (
-                                                <Register />
-                              )} />
-                              <Route path='profile/newincident' render={() => (
-                                    <NewIncident />
-                              )} />
+
+                              <PrivateRoute path="/profile/newincident" component={NewIncident} />
+                              <PrivateRoute path="/profile" component={Profile} />
+
+                              <PublicRoute exact path='/updatepassword' component={UpdatePassword} />
+                              <PublicRoute exact path='/forgotpassword' component={ForgotPassword} />
+                              <PublicRoute exact path='/register' component={Register} />
+                              <PublicRoute exact path='/' component={Login} />
                               <Route path='/confirm' render={() => (
                                     <Confirm />
                               )} />

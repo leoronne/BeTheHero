@@ -1,5 +1,7 @@
 require('dotenv/config');
 
+const crypto = require('crypto');
+
 const mailer = require('../../modules/mailer');
 
 const ngoServices = require('../Services/ngoServices');
@@ -113,4 +115,170 @@ module.exports = {
       });
     }
   },
+
+  async forgotPassword(req, res) {
+    const {
+      EMAIL
+    } = req.body
+
+    try {
+      if (!await ngoServices.validateEmailAddress(EMAIL))
+        return res.status(401).send({
+          message: 'Invalid email!'
+        });
+
+      const ngo = await ngoRepository.getByCredentials(EMAIL, null);
+
+      if (!ngo)
+        return res.status(401).send({
+          message: 'NGO not found!'
+        });
+
+      const token = crypto.randomBytes(20).toString('hex');
+      const name = ngo.NAME;
+      const now = new Date();
+
+      now.setHours(now.getHours() + 1);
+      await ngoRepository.setPasswordReset(ngo.ID, token, now);
+
+      mailer.sendMail({
+        to: `${ngo.EMAIL}`,
+        bc: 'betheehero@gmail.com',
+        from: '"Léo, of Be The Hero" <betheehero@no-reply.com>',
+        subject: `Hey ${name}, do you need to change your password?`,
+        template: 'auth/forgotPassword',
+        context: {
+          name,
+          link: `${process.env.APP_URL}updatepassword?token=${await ngoServices.generateToken({
+            id: ngo.ID
+          })}&passtoken=${token}`
+        },
+      }, (err) => {
+        if (err)
+          return res.status(401).send({
+            message: err.message
+          });
+      });
+
+      return res.status(200).send(JSON.stringify(token));
+
+    } catch (err) {
+      return res.status(500).send({
+        message: err.message
+      });
+    }
+  },
+
+  async  validPasswordToken(req, res) {
+    const {
+      passtoken,
+      token
+    } = req.query
+
+    try {
+      if (await ngoServices.validateToken(token) === false) {
+        return res.status(401).send({
+          message: 'Invalid token!'
+        });
+      };
+
+      const [ngo] = await ngoRepository.getByID(await ngoServices.decodeToken(token));
+
+      if (!ngo)
+        return res.status(401).send({
+          message: 'NGO not found!'
+        });
+
+      if (passtoken !== ngo.PASSTOKEN)
+        return res.status(401).send({
+          message: 'Invalid token!'
+        });
+
+      const now = new Date();
+      const passDate = new Date(ngo.PASSRESET);
+      if (!now > passDate)
+        return res.status(401).send({
+          message: 'Password token expired!'
+        })
+
+      return res.status(204).send();
+    } catch (err) {
+      return res.status(500).send({
+        message: err.message
+      });
+    }
+  },
+
+  async  updatepassword(req, res) {
+    const {
+      PASSWORD,
+    } = req.body
+
+    const passtoken = req.headers.passtoken;
+    const token = req.headers.authorization;
+
+    try {
+      var strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
+
+      if (await ngoServices.validateToken(token) === false) {
+        return res.status(401).send({
+          message: 'Invalid token!'
+        });
+      };
+
+      const [ngo] = await ngoRepository.getByID(await ngoServices.decodeToken(token));
+
+      if (!ngo)
+        return res.status(401).send({
+          message: 'NGO not found!'
+        });
+
+      if (passtoken !== ngo.PASSTOKEN)
+        return res.status(401).send({
+          message: 'Invalid token!'
+        });
+
+      const now = new Date();
+      const passDate = new Date(ngo.PASSRESET);
+      if (!now > passDate)
+        return res.status(401).send({
+          message: 'Password token expired!'
+        })
+
+      if (!strongRegex.test(PASSWORD))
+        return res.status(401).send({
+          message: 'Invalid password!'
+        })
+
+      const name = ngo.NAME;
+
+      const link = process.env.APP_URL
+
+      await ngoRepository.updatePassword(ngo.ID, PASSWORD);
+
+      mailer.sendMail({
+        to: `${ngo.EMAIL}`,
+        bc: 'betheehero@gmail.com',
+        from: '"Léo, of Be The Hero" <betheehero@no-reply.com>',
+        subject: `Hi ${name}, your password was changed!`,
+        template: 'auth/updatePassword',
+        context: {
+          name,
+          link
+        },
+      }, (err) => {
+        if (err)
+          return res.status(401).send({
+            message: err.message
+          });
+      });
+
+      return res.status(200).json(await ngoRepository.getByID(ngo.ID));
+    } catch (err) {
+      res.status(500).send({
+        message: err.message
+      })
+    }
+  }
+
 };
