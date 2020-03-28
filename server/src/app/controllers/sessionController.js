@@ -39,10 +39,14 @@ module.exports = {
           message: 'Please, you need to verify your email adress first!'
         });
       }
-
-      res.send(JSON.stringify(await ngoServices.generateToken({
+      var token = await ngoServices.generateToken({
         id: ngo.ID
-      })));
+      });
+      res.json({
+        token,
+        name: ngo.NAME,
+        ngoID: ngo.ID
+      });
 
 
     } catch (err) {

@@ -9,6 +9,7 @@ const validations = require('../validators/incidentsValidator');
 
 router.post('/create', celebrate(validations.create), controller.create);
 router.get('/index', celebrate(validations.index), controller.index);
+router.get('/indexAll', controller.indexAll);
 router.delete('/delete', celebrate(validations.delete), controller.delete);
 
 module.exports = router;

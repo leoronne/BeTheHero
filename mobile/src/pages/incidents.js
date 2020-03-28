@@ -32,8 +32,6 @@ export default function Incidents() {
                   params: { page }
             });
 
-            console.log(response.data)
-
             setIncidents([...incidents, ...response.data]);
             setTotal(response.headers['x-total-count']);
 

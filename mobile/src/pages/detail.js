@@ -13,7 +13,7 @@ export default function Detail() {
 	const route = useRoute();
 
 	const incident = route.params.incident;
-	const message = `Hello ${incident.NAME}, I'm getting in touch because I would like to help with the incident "${incident.title}" with the ammount of ${incident.value}`
+	const message = `Hello ${incident.NAME}, I'm getting in touch because I would like to help with the incident "${incident.TITLE}" with the ammount of $ ${incident.VALUE}`
 
 	function navigateBack() {
 		navigation.goBack();
@@ -22,7 +22,7 @@ export default function Detail() {
 	function sendMail() {
 		MailComposer.composeAsync({
 			recipients: [incident.EMAIL],
-			subject: `Incident's Hero: ${incident.TITLE}`,
+			subject: `A Hero is interested on your incident: ${incident.TITLE}`,
 			body: message,
 		})
 	};

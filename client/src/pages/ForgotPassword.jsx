@@ -103,8 +103,8 @@ export class ForgotPassword extends React.Component {
                                                 size="normal"
                                                 data-theme="light"
                                                 render="explicit"
-                                                sitekey="6LcRsuQUAAAAABrMSWpV2uDBOI0qYowbOc_kv3sP"
-                                                // 6Ld1suQUAAAAAF7QqJzC4fB2L63ZmkKssa-RPJMv
+                                                // sitekey="6LcRsuQUAAAAABrMSWpV2uDBOI0qYowbOc_kv3sP" //localhost
+                                                sitekey="6Ld1suQUAAAAAF7QqJzC4fB2L63ZmkKssa-RPJMv" //firebase
                                                 onloadCallback={this.onLoadRecaptcha}
                                                 verifyCallback={this.verifyCallback}
                                           />
@@ -121,7 +121,7 @@ export class ForgotPassword extends React.Component {
                                                 color={'#fff'} /> : 'Send email'}
                                     </Button>
                                     <div className='links'>
-                                          <Link className='back-link' to='/'>
+                                          <Link className='back-link' to='/login'>
                                                 <FiArrowLeft size={16} color='#E02041' />Return to Homepage
                                     </Link>
 

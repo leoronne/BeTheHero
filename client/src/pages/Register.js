@@ -47,7 +47,7 @@ export default function Register() {
                               notify(`NGO registered successfully!`, '✔️', 'success', 'top-right');
                               setTimeout(
                                     function () {
-                                          history.push('/');
+                                          history.push('/login');
                                     },
                                     1500
                               );
@@ -125,7 +125,7 @@ export default function Register() {
                               </p>
 
 
-                                    <Link className='back-link' to='/'>
+                                    <Link className='back-link' to='/login'>
                                           <FiArrowLeft size={16} color='#E02041' />Return to Homepage
                               </Link>
 

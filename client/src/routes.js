@@ -3,6 +3,7 @@ import { createBrowserHistory } from "history";
 
 import { BrowserRouter, Route, Switch, Redirect, Router } from 'react-router-dom';
 
+import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword.jsx';
@@ -10,6 +11,7 @@ import UpdatePassword from './pages/UpdatePassword';
 import Confirm from './pages/Confirm';
 import Profile from './pages/Profile';
 import NewIncident from './pages/NewIncident';
+import Index from './pages/Index';
 
 import isAuthenticated from './services/auth';
 import api from './services/api';
@@ -57,38 +59,6 @@ const PublicRoute = ({ component: Component, ...rest }) => {
 };
 
 export default function Routes() {
-
-      // var authenticated;
-      // useEffect(() => {
-      //       if (localStorage.hasOwnProperty('token')) {
-      //             api.get('session/validatetoken', {
-      //                   params: {
-      //                         token: localStorage.getItem('token')
-      //                   }
-      //             })
-      //                   .then((response) => {
-      //                         localStorage.setItem('ngoID', response.data.ID);
-      //                         localStorage.setItem('name', response.data.NAME);
-      //                         localStorage.setItem('email', response.data.EMAIL);
-      //                         localStorage.setItem('whatsapp', response.data.WHATSAPP);
-      //                         localStorage.setItem('city', response.data.CITY);
-      //                         localStorage.setItem('uf', response.data.UF);
-      //                         authenticated = true;
-      //                         return true
-      //                   })
-      //                   .catch((err) => {
-      //                         // notify(`${err.response === undefined ? err.message : err.response.data.message}`, '⚠️', 'error', 'top-right');
-      //                         authenticated = false;
-      //                         return false
-      //                   });
-      //       }
-      //       else {
-      //             authenticated = false;
-      //             return false
-      //       }
-      //       // console.log(authenticated)
-      // }, []);
-
       return (
             <BrowserRouter basename={window.location.pathname || ''} >
                   <Router history={hist} basename={window.location.pathname || ''}>
@@ -100,9 +70,13 @@ export default function Routes() {
                               <PublicRoute exact path='/updatepassword' component={UpdatePassword} />
                               <PublicRoute exact path='/forgotpassword' component={ForgotPassword} />
                               <PublicRoute exact path='/register' component={Register} />
-                              <PublicRoute exact path='/' component={Login} />
+                              <PublicRoute exact path='/login' component={Login} />
+                              <PublicRoute exact path='/' component={Homepage} />
                               <Route path='/confirm' render={() => (
                                     <Confirm />
+                              )} />
+                              <Route path='/index' render={() => (
+                                    <Index />
                               )} />
                         </Switch>
                   </Router>

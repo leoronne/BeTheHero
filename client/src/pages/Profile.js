@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiPower, FiTrash2 } from 'react-icons/fi';
+import { FiPower, FiTrash2, FiPlus } from 'react-icons/fi';
+import { FaPowerOff } from 'react-icons/fa';
 import { DotLoader } from 'react-spinners';
 import {
       Button
@@ -71,17 +72,20 @@ export default function Profile() {
 
       return (
 
-            < div className='profile-container' >
+            <div className='profile-container' >
                   <header>
                         <img src={logo} alt='Be The Hero' />
                         <span>
                               Welcome, <strong>{ngoName}</strong>
                         </span>
 
-                        <Link className='linkButton' to='/profile/newincident' >Create new incident</Link>
+                        <Link className='linkButton' to='/profile/newincident' >
+                        <FiPlus size={30} color='#fff' /> 
+                        <p>Create new incident</p>
+                              </Link>
 
                         <button type='button' onClick={handleLogout}>
-                              <FiPower size={18} color='#E02041' />
+                              <FaPowerOff size={18} color='#E02041' />
                         </button>
                   </header>
 

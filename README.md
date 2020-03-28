@@ -9,8 +9,10 @@
 <p align="center">
   <a href="#project-">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#techs-rocket">Techs</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#techs-rocket">Extras</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#installation-wrench">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#test-heavy_check_mark">Test</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#test-heavy_check_mark">To Do</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#contributing-">Contributing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#license-memo">License</a>
 </p>
@@ -19,7 +21,9 @@
 
 ## Project 💻
 
-**Be The Hero** connects people who want to help NGOs, it was a project made on [Rocketseat](https://github.com/Rocketseat)'s #11 OmniStack Week.
+**Be The Hero** connects people who want to help Non Governmental Organizations (NGO). At the platform NGOs can create incidents which they need a <strong>hero</strong> to help. The heroes can search through all the incidents created and choose which one they want to help and contact the NGO.
+
+It was a project made on [Rocketseat](https://github.com/Rocketseat)'s #11 OmniStack Week, with a few changes.
 
 <br>
 
@@ -28,6 +32,14 @@
 - [Node.js](https://nodejs.org/en/);
 - [ReactJS](https://reactjs.org);
 - [React Native](https://facebook.github.io/react-native/).
+
+<br>
+
+## Extras :slot_machine:
+
+- Email integration (account verification, reset password etc);
+- JWT authentication;
+- Frontend x Backend Validation.
 
 <br>
 
@@ -41,6 +53,14 @@ yarn installapp
 
 <br>
 
+If you wish to install the mobile version, from the root folder, run the following command:
+
+```sh
+yarn installmobile
+```
+
+<br>
+
 ## Test :heavy_check_mark:
 
 To start the application server on your local machine, from the root folder, just run:
@@ -48,6 +68,8 @@ To start the application server on your local machine, from the root folder, jus
 ```sh
 yarn start
 ```
+
+<strong>Note: you need to create a .env file on the server directory based on the [example file](https://github.com/leoronne/BeTheHero/blob/master/server/example.env).</strong>
 
 <br>
 
@@ -61,7 +83,16 @@ yarn startclient
 <br>
 
 
-<strong>Remember to change the api's [baseURL](https://github.com/leoronne/BeTheHero/blob/master/client/src/services/api.js) to your local server adress (which is set to http://localhost:8080/ at [index.js](https://github.com/leoronne/BeTheHero/blob/master/server/src/index.js)), or to your production server.</strong>
+<strong>Remember to change the [client](https://github.com/leoronne/BeTheHero/blob/master/client/src/services/api.js) and [mobile](https://github.com/leoronne/BeTheHero/blob/master/mobile/src/services/api.js) api's baseURL to your local server adress (which is set to http://localhost:8080/ at [server/index.js](https://github.com/leoronne/BeTheHero/blob/master/server/src/index.js)) or to your production server.</strong>
+
+<br>
+
+## To do :newspaper:
+
+- Filters so that NGO and heroes can search through incidents more efficiently;
+- Mark the incidents that have been already solved;
+- Create more contact options;
+- Interface for the NGOs on the mobile version, in the moment the mobile app only lists all the incidents created and allows you to contact the NGO responsible.
 
 <br>
 

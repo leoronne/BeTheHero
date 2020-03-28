@@ -32,14 +32,15 @@ export default function Login() {
 
                   await api.post('session/login', data)
                         .then((response) => {
-                              localStorage.setItem('token', response.data)
+                              localStorage.setItem('token', response.data.token)
+                              localStorage.setItem('name', response.data.NAME)
+                              localStorage.setItem('ngoID', response.data.ngoID)
                               setTimeout(
                                     function () {
                                           history.push('/profile');
                                     },
                                     50
                               );
-                              isAuthenticated();
                         })
                         .catch((err) => {
                               notify(`${err.response === undefined ? err.message : err.response.data.message}`, '⚠️', 'error', 'top-right');

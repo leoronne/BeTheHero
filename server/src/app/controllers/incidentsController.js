@@ -33,6 +33,19 @@ module.exports = {
     }
   },
 
+  async indexAll(req, res) {
+    try {
+      const incidents = await incidentsRepository.indexAll()
+      res.header('X-Total-Count', await incidentsRepository.count());
+
+      return res.json(incidents);
+    } catch (err) {
+      return res.status(500).send({
+        message: err.message
+      });
+    }
+  },
+
   async create(req, res) {
     const ngoID = req.headers.authorization;
 
@@ -72,16 +85,17 @@ module.exports = {
         await incidentsRepository.deleteAll(ngoID);
         return res.status(204).send();
       }
+      
+      // var incidentsID = ID.split(',');
+      var incidentsID = ID;
 
-      var incidentsID = ID.split(',');
-
-      for (var i = 0; i < incidentsID.length; i++) {
-        var [incidents] = await incidentsRepository.getByID(incidentsID[i]);
+      // for (var i = 0; i < incidentsID.length; i++) {
+        var [incidents] = await incidentsRepository.getByID(incidentsID);
 
         if (incidents.NGO_ID === ngoID) {
-          await incidentsRepository.deleteByID(incidentsID[i]);
+          await incidentsRepository.deleteByID(incidentsID);
         }
-      };
+      // };
 
       return res.status(204).send();
     } catch (err) {

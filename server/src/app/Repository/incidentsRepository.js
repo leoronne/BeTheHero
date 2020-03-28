@@ -41,6 +41,20 @@ module.exports = {
 
         return incidents;
     },
+    async indexAll() {
+        const incidents = await connection('INCIDENTS')
+            .join('NGO', 'NGO.ID', '=', 'INCIDENTS.NGO_ID')
+            .select([
+                'INCIDENTS.*',
+                'NGO.NAME',
+                'NGO.EMAIL',
+                'NGO.WHATSAPP',
+                'NGO.CITY',
+                'NGO.UF'
+            ]);
+
+        return incidents;
+    },
     async create(data, ngoID) {
         const {
             TITLE,
@@ -69,7 +83,8 @@ module.exports = {
         return count['count(*)'];
     },
     async deleteByID(incidentsID) {
-        await connection('INCIDENTS').delete().whereIn('id', incidentsID.split(','));
+        await connection('INCIDENTS').delete().where('id', incidentsID
+        );
     },
     async deleteAll(NGO_ID) {
         await connection('INCIDENTS').delete().where({ NGO_ID });
