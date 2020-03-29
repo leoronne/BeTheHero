@@ -393,6 +393,12 @@
                                           "$ref": "#/definitions/ErrorResponseDto"
                                     }
                               },
+                              "404": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
                               "500": {
                                     "description": "Internal error while processing request",
                                     "schema": {
