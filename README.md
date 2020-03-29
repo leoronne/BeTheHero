@@ -57,11 +57,12 @@ yarn installapp
 
 <br>
 
-If you wish to install the mobile version, from the root folder, run the following command:
+If you wish to install the mobile version, from the root folder run the following command:
 
 ```sh
 yarn installmobile
 ```
+Or, if you use Android, download and install the [.apk](https://github.com/leoronne/BeTheHero/blob/master/mobile/assets/BeTheHero.apk) on your phone
 
 <br>
 
@@ -72,9 +73,8 @@ To start the application server on your local machine, from the root folder, jus
 ```sh
 yarn start
 ```
-You can read the documentation of the APIs and test them [here](http://betheehero.herokuapp.com/api-docs/).
 
-<strong>Note: you need to create a .env file on the server directory based on the [example file](https://github.com/leoronne/BeTheHero/blob/master/server/example.env).</strong>
+<strong>Note: you need to create a .env file on the server directory based on the [example file](https://github.com/leoronne/BeTheHero/blob/master/server/example.env). You can read the documentation of the APIs and test them [here](http://betheehero.herokuapp.com/api-docs/).</strong>
 
 <br>
 
@@ -89,6 +89,14 @@ yarn startclient
 
 
 <strong>Remember to change the [client](https://github.com/leoronne/BeTheHero/blob/master/client/src/services/api.js) and [mobile](https://github.com/leoronne/BeTheHero/blob/master/mobile/src/services/api.js) api's baseURL to your local server adress (which is set to http://localhost:8080/ at [server/index.js](https://github.com/leoronne/BeTheHero/blob/master/server/src/index.js)) or to your production server.</strong>
+
+<br>
+
+To start the mobile application client you need to install [expo](https://expo.io/learn) on your local machine then, from the root folder, just run:
+
+```sh
+yarn installmobile
+```
 
 <br>
 
