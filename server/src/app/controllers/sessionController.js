@@ -1,3 +1,5 @@
+require('dotenv/config');
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -16,14 +18,14 @@ module.exports = {
 
     try {
       if (!await ngoServices.validateEmailAddress(EMAIL))
-        return res.status(401).send({
+        return res.status(400).send({
           message: 'Invalid email!'
         });
 
       const ngo = await ngoRepository.getByCredentials(EMAIL, null);
 
       if (!ngo) {
-        return res.status(401).send({
+        return res.status(404).send({
           message: 'NGO not found!'
         });
       }
@@ -50,7 +52,7 @@ module.exports = {
 
 
     } catch (err) {
-      return res.status(400).send({
+      return res.status(500).send({
         message: err.message
       });
     }
@@ -70,7 +72,7 @@ module.exports = {
       const [ngo] = await ngoRepository.getByID(await ngoServices.decodeToken(token));
 
       if (!ngo)
-        return res.status(401).send({
+        return res.status(404).send({
           message: 'NGO not found!'
         });
 
@@ -78,7 +80,7 @@ module.exports = {
 
       return res.status(200).json(ngo);
     } catch (err) {
-      return res.status(400).send({
+      return res.status(500).send({
         message: err.message
       });
     }
@@ -91,20 +93,20 @@ module.exports = {
     try {
 
       if (!await ngoServices.validateEmailAddress(EMAIL))
-        return res.status(401).send({
+        return res.status(400).send({
           message: 'Invalid email!'
         });
 
       const ngo = await ngoRepository.getByCredentials(EMAIL, null);
 
       if (!ngo)
-        return res.status(401).send({
+        return res.status(404).send({
           message: 'NGO not found!'
         });
 
       if (ngo.STATUS === 'Active') {
         return res.status(401).send({
-          message: 'NGO already active!'
+          message: 'NGO is already active!'
         });
       }
 
@@ -113,7 +115,7 @@ module.exports = {
 
       mailer.sendMail({
         to: `${EMAIL}`,
-        bc: 'betheehero@gmail.com',
+        bc:  process.env.GMAIL_USER, 
         from: '"Léo, of Be The Hero" <betheehero@no-reply.com>',
         subject: `Hi ${ngo.NAME}, please confirm your email!`,
         template: 'auth/verifyemail',
@@ -123,7 +125,7 @@ module.exports = {
         },
       }, (err) => {
         if (err)
-          return res.status(400).send({
+          return res.status(503).send({
             message: err.message
           });
       });

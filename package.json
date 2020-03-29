@@ -4,7 +4,7 @@
   "author": "Leonardo Ronne",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon server/src/index.js",
+    "start": "node server/src/index.js",
     "startclient": "cd ./client/ && yarn start",
     "postinstall": "npm install --prefix server && npm install --prefix client",
     "installapp": "cd ./server/ && npm install && cd ../client && yarn install",

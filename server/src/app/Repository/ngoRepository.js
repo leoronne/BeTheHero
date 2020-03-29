@@ -9,10 +9,32 @@ module.exports = {
 
         return ngo;
     },
-    async getAll() {
-        const ngo = await connection('NGO').select(
-            '*');
-
+    async getAll(ID) {
+        const ngo = !ID ? await connection('NGO').select(
+            'ID',
+            'EMAIL',
+            'WHATSAPP',
+            'NAME',
+            'CITY',
+            'UF',
+            'STATUS',
+            'PASSTOKEN',
+            'PASSRESET',
+            'created_at',
+            'updated_at'
+        ) : await connection('NGO').select(
+            'ID',
+            'EMAIL',
+            'WHATSAPP',
+            'NAME',
+            'CITY',
+            'UF',
+            'STATUS',
+            'PASSTOKEN',
+            'PASSRESET',
+            'created_at',
+            'updated_at'
+        ).where({ ID });
         return ngo;
     },
     async getByCredentials(EMAIL, WHATSAPP) {

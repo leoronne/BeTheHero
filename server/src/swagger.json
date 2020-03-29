@@ -20,15 +20,15 @@
             ]
       },
       "host": [
-            {
-                  "name": "local",
-                  "url": "localhost:8080"
-            }
+            "betheehero-test.herokuapp.com"
       ],
       "basePath": "/",
       "tags": [
             {
                   "name": "NGO"
+            },
+            {
+                  "name": "Session"
             },
             {
                   "name": "Incidents"
@@ -39,6 +39,839 @@
             "https"
       ],
       "paths": {
+            "/ngo/register": {
+                  "post": {
+                        "tags": [
+                              "NGO"
+                        ],
+                        "summary": "Create a NGO",
+                        "operationId": "createNGO",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "in": "body",
+                                    "name": "NGO",
+                                    "description": "Create a NGO",
+                                    "required": true,
+                                    "schema": {
+                                          "$ref": "#/definitions/NGORequestDto"
+                                    }
+                              }
+                        ],
+                        "responses": {
+                              "200": {
+                                    "description": "NGO's ID",
+                                    "schema": {
+                                          "$ref": "#/definitions/NGOIDDto"
+                                    }
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "401": {
+                                    "description": "NGO already registered",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "503": {
+                                    "description": "Error while sending email confirmation",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/ngo/confirm": {
+                  "post": {
+                        "tags": [
+                              "NGO"
+                        ],
+                        "summary": "Verify a NGO's account",
+                        "operationId": "confirmNGO",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "in": "body",
+                                    "name": "ID",
+                                    "description": "NGO's ID",
+                                    "required": true,
+                                    "schema": {
+                                          "$ref": "#/definitions/NGOIDDto"
+                                    }
+                              }
+                        ],
+                        "responses": {
+                              "200": {
+                                    "description": "NGO's confirmed account",
+                                    "schema": {
+                                          "type": "object",
+                                          "properties": {
+                                                "ID": {
+                                                      "type": "string",
+                                                      "example": "f90faa62",
+                                                      "description": "NGO's ID"
+                                                },
+                                                "EMAIL": {
+                                                      "type": "string",
+                                                      "example": "example@gmail.com",
+                                                      "description": "NGO's email"
+                                                },
+                                                "WHATSAPP": {
+                                                      "type": "string",
+                                                      "example": "+5511999996666",
+                                                      "description": "NGO's WhatsApp"
+                                                },
+                                                "NAME": {
+                                                      "type": "string",
+                                                      "example": "RONNE CRUZ",
+                                                      "description": "NGO's name"
+                                                },
+                                                "CITY": {
+                                                      "type": "string",
+                                                      "example": "São Paulo",
+                                                      "description": "NGO's city"
+                                                },
+                                                "UF": {
+                                                      "type": "string",
+                                                      "example": "SP",
+                                                      "description": "NGO's UF"
+                                                },
+                                                "STATUS": {
+                                                      "type": "string",
+                                                      "example": "Active",
+                                                      "description": "NGO's status"
+                                                }
+                                          }
+                                    }
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "401": {
+                                    "description": "NGO is already active",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "404": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/ngo/index": {
+                  "get": {
+                        "tags": [
+                              "NGO"
+                        ],
+                        "summary": "Search a NGO",
+                        "operationId": "searchNGO",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "name": "ngoID",
+                                    "in": "query",
+                                    "description": "NGO's ID, if not passed will list all NGOs",
+                                    "type": "string"
+                              }
+                        ],
+                        "responses": {
+                              "200": {
+                                    "description": "List of NGOs",
+                                    "schema": {
+                                          "type": "array",
+                                          "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                      "ID": {
+                                                            "type": "string",
+                                                            "example": "f90faa62",
+                                                            "description": "NGO's ID"
+                                                      },
+                                                      "EMAIL": {
+                                                            "type": "string",
+                                                            "example": "example@gmail.com",
+                                                            "description": "NGO's email"
+                                                      },
+                                                      "WHATSAPP": {
+                                                            "type": "string",
+                                                            "example": "+5511999996666",
+                                                            "description": "NGO's WhatsApp"
+                                                      },
+                                                      "NAME": {
+                                                            "type": "string",
+                                                            "example": "RONNE CRUZ",
+                                                            "description": "NGO's name"
+                                                      },
+                                                      "CITY": {
+                                                            "type": "string",
+                                                            "example": "São Paulo",
+                                                            "description": "NGO's city"
+                                                      },
+                                                      "UF": {
+                                                            "type": "string",
+                                                            "example": "SP",
+                                                            "description": "NGO's UF"
+                                                      },
+                                                      "STATUS": {
+                                                            "type": "string",
+                                                            "example": "Active",
+                                                            "description": "NGO's status"
+                                                      },
+                                                      "PASSTOKEN": {
+                                                            "type": "string",
+                                                            "example": "a8fa3a3902384bcba4238aa7c8e38638d9aff3a6",
+                                                            "description": "NGO's password token"
+                                                      },
+                                                      "PASSRESET": {
+                                                            "type": "string",
+                                                            "example": "1585442792420",
+                                                            "description": "NGO's password token expiration"
+                                                      },
+                                                      "created_at": {
+                                                            "type": "date",
+                                                            "example": "2020-03-28 23:57:35",
+                                                            "description": "When NGO was created"
+                                                      },
+                                                      "updated_at": {
+                                                            "type": "date",
+                                                            "example": "2020-03-28 23:57:35",
+                                                            "description": "Last time when NGO was updated"
+                                                      }
+                                                }
+                                          }
+                                    }
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "404": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/ngo/delete": {
+                  "delete": {
+                        "tags": [
+                              "NGO"
+                        ],
+                        "summary": "Delete a NGO",
+                        "operationId": "deleteNGO",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "name": "ngoID",
+                                    "in": "query",
+                                    "description": "NGO's ID, if not passed will delete all NGOs and NGO's incidents of the database",
+                                    "type": "string"
+                              }
+                        ],
+                        "responses": {
+                              "204": {
+                                    "description": "NGO was deleted"
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "404": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/ngo/forgotpassword": {
+                  "post": {
+                        "tags": [
+                              "NGO"
+                        ],
+                        "summary": "Send forgot password email",
+                        "operationId": "forgotPasswordNGO",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "in": "body",
+                                    "name": "Email",
+                                    "description": "NGO's email",
+                                    "required": true,
+                                    "schema": {
+                                          "type": "object",
+                                          "properties": {
+                                                "EMAIL": {
+                                                      "type": "string",
+                                                      "example": "example@gmail.com",
+                                                      "required": true,
+                                                      "description": "NGO's Email"
+                                                }
+                                          }
+                                    }
+                              }
+                        ],
+                        "responses": {
+                              "200": {
+                                    "description": "NGO's password token",
+                                    "schema": {
+                                          "type": "string",
+                                          "example": "a8fa3a3902384bcba4238aa7c8e38638d9aff3a6"
+                                    }
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "503": {
+                                    "description": "Error while sending email",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/ngo/validpasswordtoken": {
+                  "get": {
+                        "tags": [
+                              "NGO"
+                        ],
+                        "summary": "Verify password token",
+                        "operationId": "verifypasstokenNGO",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "in": "query",
+                                    "name": "passtoken",
+                                    "required": "true",
+                                    "example": "c55611156019682b378b42ddd34fd6d32436d5b1",
+                                    "description": "NGO's password token",
+                                    "type": "string"
+                              },
+                              {
+                                    "in": "query",
+                                    "name": "token",
+                                    "required": "true",
+                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiODc0Yzk2IiwiaWF0IjoxNTg1NDQxNDU4LCJleHAiOjE1ODU0ODQ2NTh9.jwv1sR9TIrvhvKiASnEYvgowKlrYaeaWHAKX_nDacrg",
+                                    "description": "NGO's JWT token",
+                                    "type": "string"
+                              }
+                        ],
+                        "responses": {
+                              "204": {
+                                    "description": "Tokens are valid"
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "401": {
+                                    "description": "Password or JWT token are not valid",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "404": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/ngo/updatepassword": {
+                  "post": {
+                        "tags": [
+                              "NGO"
+                        ],
+                        "summary": "Update password",
+                        "operationId": "updatePasswordNGO",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "in": "body",
+                                    "name": "Password",
+                                    "description": "NGO's new password",
+                                    "required": true,
+                                    "schema": {
+                                          "type": "object",
+                                          "properties": {
+                                                "PASSWORD": {
+                                                      "type": "string",
+                                                      "example": "Example1@",
+                                                      "required": true,
+                                                      "description": "NGO's Password"
+                                                }
+                                          }
+                                    }
+                              },
+                              {
+                                    "name": "Authorization",
+                                    "in": "header",
+                                    "required": "true",
+                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiODc0Yzk2IiwiaWF0IjoxNTg1NDQxNDU4LCJleHAiOjE1ODU0ODQ2NTh9.jwv1sR9TIrvhvKiASnEYvgowKlrYaeaWHAKX_nDacrg",
+                                    "description": "NGO's JWT token",
+                                    "type": "string"
+                              },
+                              {
+                                    "name": "passtoken",
+                                    "in": "header",
+                                    "required": "true",
+                                    "example": "c55611156019682b378b42ddd34fd6d32436d5b1",
+                                    "description": "NGO's password token",
+                                    "type": "string"
+                              }
+                        ],
+                        "responses": {
+                              "200": {
+                                    "description": "Password updated",
+                                    "schema": {
+                                          "type": "array",
+                                          "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                      "ID": {
+                                                            "type": "string",
+                                                            "example": "f90faa62",
+                                                            "description": "NGO's ID"
+                                                      },
+                                                      "EMAIL": {
+                                                            "type": "string",
+                                                            "example": "example@gmail.com",
+                                                            "description": "NGO's email"
+                                                      },
+                                                      "WHATSAPP": {
+                                                            "type": "string",
+                                                            "example": "+5511999996666",
+                                                            "description": "NGO's WhatsApp"
+                                                      },
+                                                      "NAME": {
+                                                            "type": "string",
+                                                            "example": "RONNE CRUZ",
+                                                            "description": "NGO's name"
+                                                      },
+                                                      "CITY": {
+                                                            "type": "string",
+                                                            "example": "São Paulo",
+                                                            "description": "NGO's city"
+                                                      },
+                                                      "UF": {
+                                                            "type": "string",
+                                                            "example": "SP",
+                                                            "description": "NGO's UF"
+                                                      },
+                                                      "STATUS": {
+                                                            "type": "string",
+                                                            "example": "Active",
+                                                            "description": "NGO's status"
+                                                      },
+                                                      "PASSTOKEN": {
+                                                            "type": "string",
+                                                            "example": null,
+                                                            "description": "NGO's password token"
+                                                      },
+                                                      "PASSRESET": {
+                                                            "type": "string",
+                                                            "example": null,
+                                                            "description": "NGO's password token expiration"
+                                                      },
+                                                      "created_at": {
+                                                            "type": "date",
+                                                            "example": "2020-03-28 23:57:35",
+                                                            "description": "When NGO was created"
+                                                      },
+                                                      "updated_at": {
+                                                            "type": "date",
+                                                            "example": "2020-03-28 23:57:35",
+                                                            "description": "Last time when NGO was updated"
+                                                      }
+                                                }
+                                          }
+                                    }
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "401": {
+                                    "description": "Password or JWT token are not valid or invalid password",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "404": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "503": {
+                                    "description": "Error while sending email",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/session/login": {
+                  "post": {
+                        "tags": [
+                              "Session"
+                        ],
+                        "summary": "Create a session",
+                        "operationId": "loginNGO",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "in": "body",
+                                    "name": "Credentials",
+                                    "description": "NGO's credentials",
+                                    "required": true,
+                                    "schema": {
+                                          "type": "object",
+                                          "properties": {
+                                                "EMAIL": {
+                                                      "type": "string",
+                                                      "example": "example@gmail.com",
+                                                      "required": true,
+                                                      "description": "NGO's Email"
+                                                },
+                                                "PASSWORD": {
+                                                      "type": "string",
+                                                      "example": "Example1@",
+                                                      "required": true,
+                                                      "description": "NGO's Password"
+                                                }
+                                          }
+                                    }
+                              }
+                        ],
+                        "responses": {
+                              "200": {
+                                    "description": "Email was sent",
+                                    "schema": {
+                                          "$ref": "#/definitions/LoginResponseDto"
+                                    }
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "401": {
+                                    "description": "Invalid credentials or NGO not verified",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "404": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/session/sendemailverification": {
+                  "post": {
+                        "tags": [
+                              "Session"
+                        ],
+                        "summary": "Send verification email",
+                        "operationId": "verificationEmailNGO",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "in": "body",
+                                    "name": "Email",
+                                    "description": "NGO's email",
+                                    "required": true,
+                                    "schema": {
+                                          "type": "object",
+                                          "properties": {
+                                                "EMAIL": {
+                                                      "type": "string",
+                                                      "example": "example@gmail.com",
+                                                      "description": "NGO's Email"
+                                                }
+                                          }
+                                    }
+                              }
+                        ],
+                        "responses": {
+                              "204": {
+                                    "description": "Email was sent"
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "401": {
+                                    "description": "NGO is already active",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "404": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "503": {
+                                    "description": "Error while sending email",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/session/validatetoken": {
+                  "get": {
+                        "tags": [
+                              "Session"
+                        ],
+                        "summary": "Verify JWT token",
+                        "operationId": "verifyJWTNGO",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "in": "query",
+                                    "name": "token",
+                                    "required": "true",
+                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiODc0Yzk2IiwiaWF0IjoxNTg1NDQxNDU4LCJleHAiOjE1ODU0ODQ2NTh9.jwv1sR9TIrvhvKiASnEYvgowKlrYaeaWHAKX_nDacrg",
+                                    "description": "NGO's JWT token",
+                                    "type": "string"
+                              }
+                        ],
+                        "responses": {
+                              "200": {
+                                    "description": "Token are valid",
+                                    "schema": {
+                                          "type": "object",
+                                          "properties": {
+                                                "ID": {
+                                                      "type": "string",
+                                                      "example": "f90faa62",
+                                                      "description": "NGO's ID"
+                                                },
+                                                "EMAIL": {
+                                                      "type": "string",
+                                                      "example": "example@gmail.com",
+                                                      "description": "NGO's email"
+                                                },
+                                                "WHATSAPP": {
+                                                      "type": "string",
+                                                      "example": "+5511999996666",
+                                                      "description": "NGO's WhatsApp"
+                                                },
+                                                "NAME": {
+                                                      "type": "string",
+                                                      "example": "RONNE CRUZ",
+                                                      "description": "NGO's name"
+                                                },
+                                                "CITY": {
+                                                      "type": "string",
+                                                      "example": "São Paulo",
+                                                      "description": "NGO's city"
+                                                },
+                                                "UF": {
+                                                      "type": "string",
+                                                      "example": "SP",
+                                                      "description": "NGO's UF"
+                                                },
+                                                "STATUS": {
+                                                      "type": "string",
+                                                      "example": "Active",
+                                                      "description": "NGO's status"
+                                                },
+                                                "PASSTOKEN": {
+                                                      "type": "string",
+                                                      "example": "a8fa3a3902384bcba4238aa7c8e38638d9aff3a6",
+                                                      "description": "NGO's password token"
+                                                },
+                                                "PASSRESET": {
+                                                      "type": "string",
+                                                      "example": "1585442792420",
+                                                      "description": "NGO's password token expiration"
+                                                },
+                                                "created_at": {
+                                                      "type": "date",
+                                                      "example": "2020-03-28 23:57:35",
+                                                      "description": "When NGO was created"
+                                                },
+                                                "updated_at": {
+                                                      "type": "date",
+                                                      "example": "2020-03-28 23:57:35",
+                                                      "description": "Last time when NGO was updated"
+                                                }
+                                          }
+                                    }
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "401": {
+                                    "description": "invalid JWT token",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "404": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
             "/incidents/create": {
                   "post": {
                         "tags": [
@@ -77,7 +910,13 @@
                                           "$ref": "#/definitions/IncidentResponseDto"
                                     }
                               },
-                              "401": {
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "404": {
                                     "description": "NGO not found",
                                     "schema": {
                                           "$ref": "#/definitions/ErrorResponseDto"
@@ -97,7 +936,7 @@
                         "tags": [
                               "Incidents"
                         ],
-                        "summary": "Searcn an incident",
+                        "summary": "Search an incident",
                         "operationId": "searchIncident",
                         "consumes": [
                               "application/json"
@@ -109,25 +948,233 @@
                               {
                                     "name": "ngoID",
                                     "in": "query",
-                                    "description": "NGO's ID (you can search more than one, just use a ',' to separate then)",
+                                    "description": "NGO's ID, if passed it will show all the NGO's incidents",
                                     "type": "string"
                               },
                               {
                                     "name": "page",
                                     "in": "query",
-                                    "description": "Result's page (delimited by 5)",
+                                    "description": "Limit results by 5 when ngoID is not informed, you need to increment the value by 1 to go to the next page. It won't work if you use it with ngoID!",
                                     "type": "number",
                                     "format": "integer"
                               }
                         ],
                         "responses": {
                               "200": {
-                                    "description": "Incident created",
+                                    "description": "NGO's incidents",
                                     "schema": {
-                                          "$ref": "#/definitions/IncidentResponseDto"
+                                          "type": "array",
+                                          "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                      "id": {
+                                                            "type": "number",
+                                                            "format": "integer",
+                                                            "example": 1,
+                                                            "description": "Incident's ID"
+                                                      },
+                                                      "TITLE": {
+                                                            "type": "string",
+                                                            "example": "Equipment repair",
+                                                            "description": "Incident's Title"
+                                                      },
+                                                      "DESCRIPTION": {
+                                                            "type": "string",
+                                                            "example": "A flood destroyed all of our equipment",
+                                                            "description": "Incident's description"
+                                                      },
+                                                      "VALUE": {
+                                                            "type": "number",
+                                                            "format": "double",
+                                                            "example": 2035.45,
+                                                            "description": "Incident's value"
+                                                      },
+                                                      "NGO_ID": {
+                                                            "type": "string",
+                                                            "example": "f90faa62",
+                                                            "description": "NGO's ID"
+                                                      },
+                                                      "EMAIL": {
+                                                            "type": "string",
+                                                            "example": "example@gmail.com",
+                                                            "description": "NGO's email"
+                                                      },
+                                                      "WHATSAPP": {
+                                                            "type": "string",
+                                                            "example": "+5511999996666",
+                                                            "description": "NGO's WhatsApp"
+                                                      },
+                                                      "NAME": {
+                                                            "type": "string",
+                                                            "example": "RONNE CRUZ",
+                                                            "description": "NGO's name"
+                                                      },
+                                                      "CITY": {
+                                                            "type": "string",
+                                                            "example": "São Paulo",
+                                                            "description": "NGO's city"
+                                                      },
+                                                      "UF": {
+                                                            "type": "string",
+                                                            "example": "SP",
+                                                            "description": "NGO's UF"
+                                                      }
+                                                }
+                                          }
                                     }
                               },
-                              "401": {
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "404": {
+                                    "description": "NGO not found",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/incidents/indexall": {
+                  "get": {
+                        "tags": [
+                              "Incidents"
+                        ],
+                        "summary": "Search all incidents",
+                        "operationId": "searchAllIncident",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "responses": {
+                              "200": {
+                                    "description": "NGO's incidents",
+                                    "schema": {
+                                          "type": "array",
+                                          "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                      "id": {
+                                                            "type": "number",
+                                                            "format": "integer",
+                                                            "example": 1,
+                                                            "description": "Incident's ID"
+                                                      },
+                                                      "TITLE": {
+                                                            "type": "string",
+                                                            "example": "Equipment repair",
+                                                            "description": "Incident's Title"
+                                                      },
+                                                      "DESCRIPTION": {
+                                                            "type": "string",
+                                                            "example": "A flood destroyed all of our equipment",
+                                                            "description": "Incident's description"
+                                                      },
+                                                      "VALUE": {
+                                                            "type": "number",
+                                                            "format": "double",
+                                                            "example": 2035.45,
+                                                            "description": "Incident's value"
+                                                      },
+                                                      "NGO_ID": {
+                                                            "type": "string",
+                                                            "example": "f90faa62",
+                                                            "description": "NGO's ID"
+                                                      },
+                                                      "EMAIL": {
+                                                            "type": "string",
+                                                            "example": "example@gmail.com",
+                                                            "description": "NGO's email"
+                                                      },
+                                                      "WHATSAPP": {
+                                                            "type": "string",
+                                                            "example": "+5511999996666",
+                                                            "description": "NGO's WhatsApp"
+                                                      },
+                                                      "NAME": {
+                                                            "type": "string",
+                                                            "example": "RONNE CRUZ",
+                                                            "description": "NGO's name"
+                                                      },
+                                                      "CITY": {
+                                                            "type": "string",
+                                                            "example": "São Paulo",
+                                                            "description": "NGO's city"
+                                                      },
+                                                      "UF": {
+                                                            "type": "string",
+                                                            "example": "SP",
+                                                            "description": "NGO's UF"
+                                                      }
+                                                }
+                                          }
+                                    }
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "500": {
+                                    "description": "Internal error while processing request",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              }
+                        }
+                  }
+            },
+            "/incidents/delete": {
+                  "delete": {
+                        "tags": [
+                              "Incidents"
+                        ],
+                        "summary": "Delete an incident",
+                        "operationId": "deleteIncident",
+                        "consumes": [
+                              "application/json"
+                        ],
+                        "produces": [
+                              "application/json"
+                        ],
+                        "parameters": [
+                              {
+                                    "name": "ID",
+                                    "in": "query",
+                                    "description": "Incident's ID to delete, if not passed it will delete all NGO's incidents",
+                                    "type": "string"
+                              },
+                              {
+                                    "name": "Authorization",
+                                    "in": "header",
+                                    "description": "NGO's ID",
+                                    "required": true,
+                                    "type": "string"
+                              }
+                        ],
+                        "responses": {
+                              "204": {
+                                    "description": "Incident was deleted"
+                              },
+                              "400": {
+                                    "description": "Validation error",
+                                    "schema": {
+                                          "$ref": "#/definitions/ErrorResponseDto"
+                                    }
+                              },
+                              "404": {
                                     "description": "NGO not found",
                                     "schema": {
                                           "$ref": "#/definitions/ErrorResponseDto"
@@ -144,6 +1191,64 @@
             }
       },
       "definitions": {
+            "NGORequestDto": {
+                  "type": "object",
+                  "required": [
+                        "EMAIL",
+                        "WHATSAPP",
+                        "PASSWORD",
+                        "NAME",
+                        "CITY",
+                        "UF"
+                  ],
+                  "properties": {
+                        "EMAIL": {
+                              "type": "string",
+                              "example": "example@gmail.com",
+                              "description": "NGO's email"
+                        },
+                        "WHATSAPP": {
+                              "type": "string",
+                              "example": "+5511999996666",
+                              "description": "NGO's WhatsApp, it needs to have the country code (+XX) and the region code"
+                        },
+                        "PASSWORD": {
+                              "type": "string",
+                              "example": "Example1@",
+                              "description": "NGO's password, it must contain at least: 8 characters; a lowercase letter and a capital letter; a number; a special character"
+                        },
+                        "NAME": {
+                              "type": "string",
+                              "example": "RONNE CRUZ",
+                              "description": "NGO's name"
+                        },
+                        "CITY": {
+                              "type": "string",
+                              "example": "São Paulo",
+                              "description": "NGO's city"
+                        },
+                        "UF": {
+                              "type": "string",
+                              "example": "SP",
+                              "description": "NGO's UF, it must cointain only two letters and uppercase"
+                        }
+                  },
+                  "description": "NGO registration"
+            },
+            "NGOIDDto": {
+                  "type": "object",
+                  "required": [
+                        "ID"
+                  ],
+                  "properties": {
+                        "ID": {
+                              "type": "string",
+                              "example": "a2917f96",
+                              "description": "NGO's ID"
+                        }
+                  },
+                  "description": "NGO's ID"
+            },
             "IncidentsRequestDto": {
                   "type": "object",
                   "required": [
@@ -166,29 +1271,68 @@
                               "type": "number",
                               "format": "double",
                               "example": 2035.45,
-                              "description": "Valor do título"
+                              "description": "Incident's value"
                         }
                   },
                   "description": "Incidentes created by NGOs"
             },
             "IncidentResponseDto": {
-                  "type": "object",
-                  "properties": {
-                        "incidentsID": {
-                              "type": "number",
-                              "format": "integer",
-                              "example": 5,
-                              "description": "Incident's table ID"
+                  "type": "array",
+                  "items": {
+                        "type": "object",
+                        "properties": {
+                              "id": {
+                                    "type": "number",
+                                    "format": "integer",
+                                    "example": 1,
+                                    "description": "Incident's ID"
+                              },
+                              "TITLE": {
+                                    "type": "string",
+                                    "example": "Equipment repair",
+                                    "description": "Incident's Title"
+                              },
+                              "DESCRIPTION": {
+                                    "type": "string",
+                                    "example": "A flood destroyed all of our equipment",
+                                    "description": "Incident's description"
+                              },
+                              "VALUE": {
+                                    "type": "number",
+                                    "format": "double",
+                                    "example": 2035.45,
+                                    "description": "Incident's value"
+                              }
                         }
                   }
             },
             "ErrorResponseDto": {
                   "type": "object",
                   "properties": {
-                        "error": {
+                        "message": {
                               "type": "string",
                               "example": "Error message",
                               "description": "Error description"
+                        }
+                  }
+            },
+            "LoginResponseDto": {
+                  "type": "object",
+                  "properties": {
+                        "token": {
+                              "type": "string",
+                              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJmMjExNzg2IiwiaWF0IjoxNTg1NDEwNjIyLCJleHAiOjE1ODU0NTM4MjJ9.acuyHCTFuuXj34OLMX4_zXEkmA9bnazMdSwU53WAFxc",
+                              "description": "JWT Token"
+                        },
+                        "name": {
+                              "type": "string",
+                              "example": "RONNE CRUZ",
+                              "description": "NGO name"
+                        },
+                        "ngoID": {
+                              "type": "string",
+                              "example": "2f211786",
+                              "description": "NGO ID"
                         }
                   }
             }

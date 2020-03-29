@@ -68,6 +68,7 @@ To start the application server on your local machine, from the root folder, jus
 ```sh
 yarn start
 ```
+You can read the documentation of the APIs and test them [here](http://betheehero.herokuapp.com/api-docs/).
 
 <strong>Note: you need to create a .env file on the server directory based on the [example file](https://github.com/leoronne/BeTheHero/blob/master/server/example.env).</strong>
 

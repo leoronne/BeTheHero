@@ -17,7 +17,7 @@ module.exports = {
       const [ngo] = await ngoRepository.getByID(ngoID);
 
       if (!ngo) {
-        return res.status(401).send({
+        return res.status(404).send({
           message: 'NGO not found!'
         });
       };
@@ -53,7 +53,7 @@ module.exports = {
       const [ngo] = await ngoRepository.getByID(ngoID);
 
       if (!ngo) {
-        return res.status(401).send({
+        return res.status(404).send({
           message: 'NGO not found!'
         });
       };
@@ -76,7 +76,7 @@ module.exports = {
       const [ngo] = await ngoRepository.getByID(ngoID);
 
       if (!ngo) {
-        return res.status(401).send({
+        return res.status(404).send({
           message: 'NGO not found!'
         });
       };
