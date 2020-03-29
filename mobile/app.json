@@ -27,7 +27,12 @@
       "bundleIdentifier": "com.leoronne.bethehero"
     },
     "android": {
-      "package": "com.leoronne.bethehero"
+      "package": "com.leoronne.bethehero",
+      "icon": "./assets/img/icon.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/img/logoTransparent.png",
+        "backgroundColor": "#E02041"
+      }
     }
   }
 }

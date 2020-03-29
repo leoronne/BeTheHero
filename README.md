@@ -95,7 +95,7 @@ yarn startclient
 To start the mobile application client you need to install [expo](https://expo.io/learn) on your local machine then, from the root folder, just run:
 
 ```sh
-yarn installmobile
+yarn startmobile
 ```
 
 <br>

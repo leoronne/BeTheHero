@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server/src/index.js",
     "startclient": "cd ./client/ && yarn start",
+    "startmobile": "cd ./mobile/ && yarn start",
     "postinstall": "npm install --prefix server && npm install --prefix client",
     "installapp": "cd ./server/ && npm install && cd ../client && yarn install",
     "installmobile": "cd ./mobile/ && npm install"

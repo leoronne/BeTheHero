@@ -39,7 +39,7 @@ export default function Confirm(props) {
                         notify(`Account verified, thank you!`, '✔️', 'success', 'top-right');
                         setTimeout(
                               function () {
-                                    history.push('/')
+                                    history.push('/login')
                               },
                               600
                         );

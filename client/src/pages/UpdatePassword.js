@@ -73,7 +73,7 @@ export default function UpdatePassword() {
                               notify(`Password updated!`, '✔️', 'success', 'top-right');
                               setTimeout(
                                     function () {
-                                          history.push('/')
+                                          history.push('/login')
                                     },
                                     600
                               );
