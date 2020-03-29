@@ -23,7 +23,7 @@ module.exports = {
     useNullAsDefault: true
   },
 
-  production: {
+  test: {
     client: "sqlite3",
     connection: {
       filename: "./src/database/db-test.sqlite"
