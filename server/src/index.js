@@ -28,7 +28,13 @@ app.get('/api-doc.json', function (req, res) {
       res.send(swaggerSpec);
 });
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: false, customCss: '.swagger-ui .topbar {display :none}' }));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec,  {
+      explorer: false,
+      customCss: '.swagger-ui .topbar {display :none} ',
+      customCssUrl: 'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.1/themes/3.x/theme-material.css',
+      customfavIcon: '/api-docs/favicon.ico',
+      customSiteTitle: 'Be The Hero - API Documentation',
+}));
 
 app.use(cors());
 app.use(express.json());

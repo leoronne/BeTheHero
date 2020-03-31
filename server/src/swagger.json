@@ -1,7 +1,7 @@
 {
       "swagger": "2.0",
       "info": {
-            "title": "Be The Hero - Documentation",
+            "title": "Be The Hero - API Documentation",
             "description": "This is a sample server for standard APIs of the application!",
             "contact": {
                   "name": "Leonardo Ronne - Product Manager at Visor Brasil",
@@ -789,7 +789,7 @@
                         ],
                         "responses": {
                               "200": {
-                                    "description": "Token are valid",
+                                    "description": "JWT Token is valid",
                                     "schema": {
                                           "type": "object",
                                           "properties": {
