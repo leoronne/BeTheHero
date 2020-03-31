@@ -32,7 +32,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec,  {
       explorer: false,
       customCss: '.swagger-ui .topbar {display :none} ',
       customCssUrl: 'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.1/themes/3.x/theme-material.css',
-      customfavIcon: '/api-docs/favicon.ico',
+      customfavIcon: "https://raw.githubusercontent.com/leoronne/BeTheHero/master/assets/img/favicon.ico"
       customSiteTitle: 'Be The Hero - API Documentation',
 }));
 
